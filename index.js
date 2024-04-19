@@ -1,36 +1,33 @@
-const express = require('express');
+const express = require('express')
 const app = express()
-const cors = require('cors');
-const port = process.env.PORT || 5000;
+const cors = require('cors')
+const port = process.env.PORT || 3000
 
 
 app.use(cors())
 app.use(express.json())
 
-const users = [
-    { id: 1, name: 'sagor', email: 'sagor@gmail.com' },
-    { id: 2, name: 'mustakim', email: 'mustakim@gmail.com' },
-    { id: 3, name: 'razu', email: 'razu@gmail.com' }
+
+const user = [
+    {id:1,name:"Habib",email:'habibkhan@gmail.com'},
+    {id:2,name:"Sagor",email:'shafiqulislamsagor@gmail.com'}
 ]
 
-app.get('/users', (req, res) => {
-    res.send(users)
+app.get('/users',(req,res)=>{
+    res.send(user)
 })
 
-app.post('/users', (req, res) => {
-    console.log(req.body)
+app.post('/users',(req,res)=>{
     const newUser = req.body
-    newUser.id = users.length + 1
-    // console.log(newUser);
-    users.push(newUser)
+    console.log(newUser);
+    user.push(newUser)
     res.send(newUser)
 })
 
-
-app.get('/', (req, res) => {
-    res.send('Users Management server is running')
+app.get('/',(req , res)=>{
+    res.send('this is server management')
 })
 
-app.listen(port, () => {
-    console.log(`Server is running port ${port}`);
+app.listen(port,()=>{
+    console.log('this is port',port);
 })
